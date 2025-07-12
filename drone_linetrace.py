@@ -41,14 +41,17 @@ def takeoff():
         try:
             print("ok")
             sent = sock.sendto('takeoff'.encode(encoding="utf-8"), TELLO_ADDRESS)
+            print("TAKE OFF SENDED")
         except:
-            print("error")
+            print("TAKE OFF ERROR")
             pass
 # 着陸
 def land():
         try:
             sent = sock.sendto('land'.encode(encoding="utf-8"), TELLO_ADDRESS)
+            print("LAND SENDED")
         except:
+            print("LAND FAILED")
             pass
 # 上昇(20cm)
 def up():
@@ -169,9 +172,9 @@ def on_trackbar(val):
 #############################################
 
 # パラメータ変更部分（You may change following parameters.）
-H_MIN, H_MAX = 105, 152
-S_MIN, S_MAX = 99, 144
-V_MIN, V_MAX = 69, 146
+H_MIN, H_MAX = 105, 138
+S_MIN, S_MAX = 114, 158
+V_MIN, V_MAX = 52, 109
 
 #############################################
 
@@ -184,7 +187,7 @@ cv2.createTrackbar("S_max", window_title, S_MAX, 255, on_trackbar)
 cv2.createTrackbar("V_min", window_title, V_MIN, 255, on_trackbar)
 cv2.createTrackbar("V_max", window_title, V_MAX, 255, on_trackbar)
 a = b = c = d = 0   # rcコマンドの初期値を入力
-b = 20              # 前進の値を0に設定
+b = 40              # 前進の値を0に設定
 flag = 0
 
 # 繰り返し実行
@@ -261,6 +264,7 @@ try:
                 # 左右旋回のdだけが変化する．
                 # 前進速度のbはキー入力で変える．
                 dx = 1.0 * (240 - mx)       # 画面中心との差分
+                # dx = dx * 0.3 # 画面の中心からのずれを0.5倍にする
                 # 旋回方向の不感帯を設定
                 d = 0.0 if abs(dx) < 50.0 else dx   # ±50未満ならゼロにする
                 d = -d
