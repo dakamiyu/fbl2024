@@ -172,9 +172,9 @@ def on_trackbar(val):
 #############################################
 
 # パラメータ変更部分（You may change following parameters.）
-H_MIN, H_MAX = 105, 138
-S_MIN, S_MAX = 114, 158
-V_MIN, V_MAX = 52, 109
+H_MIN, H_MAX = 89, 153
+S_MIN, S_MAX = 40, 141
+V_MIN, V_MAX = 45, 137
 
 #############################################
 
